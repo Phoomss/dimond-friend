@@ -1,0 +1,149 @@
+<mxfile host="app.diagrams.net" modified="2026-05-18T00:00:00.000Z" agent="ChatGPT" version="24.7.17">
+  <diagram id="ERD001" name="Healthcare ERD">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1"
+      tooltips="1" connect="1" arrows="1" fold="1" page="1"
+      pageScale="1" pageWidth="1920" pageHeight="1080"
+      math="0" shadow="0">
+
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ================= CLIENT ================= -->
+        <mxCell id="client"
+          value="CLIENT&#10;━━━━━━━━━━━━━━━━━━&#10;🔑 client_id : string&#10;full_name : string&#10;nickname : string&#10;id_card_number : string&#10;birth_date : date&#10;nationality : string&#10;birth_gender : string&#10;phone_number : string&#10;line_id : string&#10;address : text&#10;education_level : string&#10;occupation : string&#10;income_range : string&#10;health_insurance : string&#10;target_group : string&#10;created_at : datetime&#10;updated_at : datetime"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="40" y="180" width="310" height="470" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= STAFF ================= -->
+        <mxCell id="staff"
+          value="STAFF&#10;━━━━━━━━━━━━━━━━━━&#10;🔑 staff_id : string&#10;username : string (Unique)&#10;password_hash : string&#10;staff_name : string&#10;role : string&#10;email : string&#10;phone_number : string&#10;is_active : boolean&#10;last_login : datetime&#10;created_at : datetime"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="420" y="220" width="300" height="330" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= SERVICE SESSION ================= -->
+        <mxCell id="service_session"
+          value="SERVICE_SESSION&#10;━━━━━━━━━━━━━━━━━━&#10;🔑 session_id : int&#10;🔗 client_id : string&#10;🔗 staff_id : string&#10;🔗 created_by : string&#10;service_date : date&#10;access_channel : string&#10;service_province : string&#10;service_district : string&#10;is_mobile_clinic : boolean&#10;partner_agency : string&#10;funding_source : string&#10;created_at : datetime&#10;updated_at : datetime"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="820" y="180" width="360" height="390" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= BEHAVIORAL ================= -->
+        <mxCell id="behavioral"
+          value="BEHAVIORAL_ASSESSMENT&#10;━━━━━━━━━━━━━━━━━━&#10;🔑🔗 session_id : int&#10;partner_type_3m : string&#10;last_sex_method : string&#10;condom_use_freq : string&#10;chemsex_history : boolean&#10;needle_sharing : boolean&#10;last_hiv_test_result : string&#10;art_status : string&#10;disclosure_status : string"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1320" y="40" width="360" height="300" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= DELIVERY ================= -->
+        <mxCell id="delivery"
+          value="SERVICE_DELIVERY&#10;━━━━━━━━━━━━━━━━━━&#10;🔑🔗 session_id : int&#10;edu_hiv_stis : boolean&#10;edu_prep_pep : boolean&#10;condom_49mm_qty : int&#10;condom_52mm_qty : int&#10;lubricant_qty : int&#10;syringe_qty : int"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1320" y="390" width="360" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= REFERRAL ================= -->
+        <mxCell id="referral"
+          value="REFERRAL_RECORD&#10;━━━━━━━━━━━━━━━━━━&#10;🔑 referral_id : int&#10;🔗 session_id : int&#10;referral_type : string&#10;destination_hospital : string&#10;test_date : date&#10;test_result : string"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="820" y="680" width="360" height="230" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= HIVST ================= -->
+        <mxCell id="hivst"
+          value="HIVST_RECORD&#10;━━━━━━━━━━━━━━━━━━&#10;🔑🔗 session_id : int&#10;test_date : date&#10;distribution_channel : string&#10;result : string&#10;confirmed_test_link : string"
+          style="shape=swimlane;rounded=1;whiteSpace=wrap;html=1;startSize=34;
+          fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;
+          fontSize=13;shadow=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="1320" y="700" width="360" height="220" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= RELATIONSHIPS ================= -->
+
+        <!-- CLIENT -> SESSION -->
+        <mxCell id="r1"
+          value="receives"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;
+          jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;
+          strokeWidth=2;"
+          edge="1" parent="1"
+          source="client" target="service_session">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- STAFF -> SESSION -->
+        <mxCell id="r2"
+          value="performs"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;
+          jettySize=auto;html=1;endArrow=ERmany;startArrow=ERone;
+          strokeWidth=2;"
+          edge="1" parent="1"
+          source="staff" target="service_session">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- SESSION -> BEHAVIOR -->
+        <mxCell id="r3"
+          value="includes"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;
+          endArrow=ERone;startArrow=ERone;strokeWidth=2;"
+          edge="1" parent="1"
+          source="service_session" target="behavioral">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- SESSION -> DELIVERY -->
+        <mxCell id="r4"
+          value="records"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;
+          endArrow=ERone;startArrow=ERone;strokeWidth=2;"
+          edge="1" parent="1"
+          source="service_session" target="delivery">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- SESSION -> REFERRAL -->
+        <mxCell id="r5"
+          value="initiates"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;
+          endArrow=ERmany;startArrow=ERone;strokeWidth=2;"
+          edge="1" parent="1"
+          source="service_session" target="referral">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- SESSION -> HIVST -->
+        <mxCell id="r6"
+          value="tracks"
+          style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;
+          endArrow=ERone;startArrow=ERone;strokeWidth=2;"
+          edge="1" parent="1"
+          source="service_session" target="hivst">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

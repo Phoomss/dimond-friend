@@ -1,0 +1,286 @@
+<mxfile host="app.diagrams.net" modified="2026-05-18T00:00:00.000Z" agent="ChatGPT" version="24.7.17">
+  <diagram id="UseCase001" name="Use Case Diagram">
+    <mxGraphModel dx="1920" dy="1080" grid="1" gridSize="10" guides="1"
+      tooltips="1" connect="1" arrows="1" fold="1" page="1"
+      pageScale="1" pageWidth="1920" pageHeight="1080"
+      math="0" shadow="0">
+
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- ================= SYSTEM BOUNDARY ================= -->
+        <mxCell id="system"
+          value="ระบบจัดการข้อมูลผู้รับบริการ Diamond Friend"
+          style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;
+          fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=18;"
+          vertex="1" parent="1">
+          <mxGeometry x="320" y="40" width="1250" height="900" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= ACTORS ================= -->
+
+        <mxCell id="admin"
+          value="Administrator&#10;(ผู้ดูแลระบบ)"
+          style="shape=umlActor;verticalLabelPosition=bottom;
+          verticalAlign=top;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="120" width="60" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="supervisor"
+          value="Supervisor&#10;(หัวหน้างาน)"
+          style="shape=umlActor;verticalLabelPosition=bottom;
+          verticalAlign=top;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="320" width="60" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="staff"
+          value="Staff / Health Worker&#10;(เจ้าหน้าที่)"
+          style="shape=umlActor;verticalLabelPosition=bottom;
+          verticalAlign=top;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="520" width="60" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="volunteer"
+          value="Volunteer&#10;(อาสาสมัคร)"
+          style="shape=umlActor;verticalLabelPosition=bottom;
+          verticalAlign=top;html=1;"
+          vertex="1" parent="1">
+          <mxGeometry x="60" y="720" width="60" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= LOGIN ================= -->
+
+        <mxCell id="login"
+          value="เข้าสู่ระบบ / ออกจากระบบ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=12;"
+          vertex="1" parent="1">
+          <mxGeometry x="430" y="90" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= USER MANAGEMENT ================= -->
+
+        <mxCell id="manage_users"
+          value="จัดการบัญชีผู้ใช้งาน"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#fff2cc;strokeColor=#d6b656;"
+          vertex="1" parent="1">
+          <mxGeometry x="420" y="220" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="manage_settings"
+          value="จัดการตั้งค่าแหล่งทุน/คู่ความร่วมมือ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#fff2cc;strokeColor=#d6b656;"
+          vertex="1" parent="1">
+          <mxGeometry x="420" y="320" width="280" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= CLIENT MANAGEMENT ================= -->
+
+        <mxCell id="reg_client"
+          value="ลงทะเบียน/แก้ไขข้อมูลผู้รับบริการ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#d5e8d4;strokeColor=#82b366;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="180" width="300" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="search_client"
+          value="ค้นหาและดูประวัติผู้รับบริการ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#d5e8d4;strokeColor=#82b366;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="280" width="280" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= SERVICE ================= -->
+
+        <mxCell id="create_session"
+          value="สร้างรอบการรับบริการ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#f8cecc;strokeColor=#b85450;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="420" width="240" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="assess_behavior"
+          value="บันทึกการประเมินพฤติกรรมเสี่ยง"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#f8cecc;strokeColor=#b85450;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="520" width="300" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="deliver_service"
+          value="บันทึกการจ่ายเวชภัณฑ์/ถุงยาง"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#f8cecc;strokeColor=#b85450;"
+          vertex="1" parent="1">
+          <mxGeometry x="760" y="620" width="300" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= REFERRAL ================= -->
+
+        <mxCell id="manage_referral"
+          value="จัดการการส่งตัวไปตรวจ - Referral"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#e1d5e7;strokeColor=#9673a6;"
+          vertex="1" parent="1">
+          <mxGeometry x="1150" y="220" width="320" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="update_test"
+          value="อัปเดตผลการตรวจ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#e1d5e7;strokeColor=#9673a6;"
+          vertex="1" parent="1">
+          <mxGeometry x="1150" y="340" width="220" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="track_hivst"
+          value="ติดตามการแจกชุดตรวจ HIVST"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#e1d5e7;strokeColor=#9673a6;"
+          vertex="1" parent="1">
+          <mxGeometry x="1150" y="460" width="260" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= REPORTS ================= -->
+
+        <mxCell id="view_reports"
+          value="ดูแดชบอร์ดและรายงานสถิติ"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#ffe6cc;strokeColor=#d79b00;"
+          vertex="1" parent="1">
+          <mxGeometry x="1150" y="620" width="280" height="60" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="audit_data"
+          value="ตรวจสอบความถูกต้องของข้อมูล - Audit"
+          style="ellipse;whiteSpace=wrap;html=1;
+          fillColor=#ffe6cc;strokeColor=#d79b00;"
+          vertex="1" parent="1">
+          <mxGeometry x="1150" y="740" width="320" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- ================= RELATIONSHIPS ================= -->
+
+        <!-- Login -->
+        <mxCell id="e1" edge="1" parent="1" source="admin" target="login"
+          style="endArrow=none;html=1;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e2" edge="1" parent="1" source="supervisor" target="login"
+          style="endArrow=none;html=1;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" edge="1" parent="1" source="staff" target="login"
+          style="endArrow=none;html=1;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" edge="1" parent="1" source="volunteer" target="login"
+          style="endArrow=none;html=1;strokeWidth=2;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Volunteer -->
+        <mxCell id="e5" edge="1" parent="1" source="volunteer" target="create_session"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e6" edge="1" parent="1" source="volunteer" target="deliver_service"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Staff -->
+        <mxCell id="e7" edge="1" parent="1" source="staff" target="reg_client"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" edge="1" parent="1" source="staff" target="search_client"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e9" edge="1" parent="1" source="staff" target="create_session"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" edge="1" parent="1" source="staff" target="assess_behavior"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e11" edge="1" parent="1" source="staff" target="deliver_service"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e12" edge="1" parent="1" source="staff" target="manage_referral"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e13" edge="1" parent="1" source="staff" target="update_test"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e14" edge="1" parent="1" source="staff" target="track_hivst"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Supervisor -->
+        <mxCell id="e15" edge="1" parent="1" source="supervisor" target="search_client"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e16" edge="1" parent="1" source="supervisor" target="update_test"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e17" edge="1" parent="1" source="supervisor" target="view_reports"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e18" edge="1" parent="1" source="supervisor" target="audit_data"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Admin -->
+        <mxCell id="e19" edge="1" parent="1" source="admin" target="manage_users"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e20" edge="1" parent="1" source="admin" target="manage_settings"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e21" edge="1" parent="1" source="admin" target="view_reports"
+          style="endArrow=none;html=1;">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
