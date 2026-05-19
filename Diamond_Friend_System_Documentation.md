@@ -86,9 +86,11 @@
 
 ---
 
-## 7. แผนภาพความสัมพันธ์ของข้อมูล (ER Diagram)
+## 7. โครงสร้างฐานข้อมูล (Data Architecture)
 
-\`\`\`mermaid
+### 7.1 แผนภาพความสัมพันธ์ (ER Diagram)
+
+```mermaid
 erDiagram
     STAFF ||--o{ SERVICE_SESSION : "บันทึกการบริการ"
     STAFF ||--o{ SERVICE_SESSION : "สร้างโดย"
@@ -98,95 +100,104 @@ erDiagram
     SERVICE_SESSION ||--|| SERVICE_DELIVERY : "บันทึกการจ่าย"
     SERVICE_SESSION ||--o{ REFERRAL_RECORD : "สร้างใบส่งตัว"
     SERVICE_SESSION ||--o{ HIVST_RECORD : "ติดตามชุดตรวจ"
+```
 
-    CLIENT {
-        string client_id PK "รหัสผู้รับบริการ"
-        string full_name "ชื่อ-นามสกุล"
-        string nickname "ชื่อเล่น"
-        string id_card_number "เลขบัตรประชาชน"
-        date birth_date "วันเกิด"
-        string nationality "สัญชาติ"
-        string birth_gender "เพศโดยกำเนิด"
-        string phone_number "เบอร์โทรศัพท์"
-        string line_id "Line ID"
-        string address "ที่อยู่"
-        string education_level "ระดับการศึกษา"
-        string occupation "อาชีพ"
-        string income_range "รายได้เฉลี่ย"
-        string health_insurance "สิทธิการรักษา"
-        string target_group "กลุ่มเป้าหมาย"
-        datetime created_at "สร้างเมื่อ"
-        datetime updated_at "แก้ไขเมื่อ"
-    }
+### 7.2 พจนานุกรมข้อมูล (Data Dictionary)
 
-    STAFF {
-        string staff_id PK "รหัสเจ้าหน้าที่"
-        string username "ชื่อผู้ใช้"
-        string password_hash "รหัสผ่านที่เข้ารหัส"
-        string staff_name "ชื่อ-นามสกุลเจ้าหน้าที่"
-        string role "บทบาท (Admin, Supervisor, Staff, Volunteer)"
-        string email "อีเมล"
-        string phone_number "เบอร์โทรศัพท์"
-        boolean is_active "สถานะการใช้งาน"
-        datetime last_login "เข้าสู่ระบบล่าสุด"
-        datetime created_at "สร้างเมื่อ"
-    }
+#### 1) ตาราง CLIENT (ข้อมูลผู้รับบริการ)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| client_id | string | PK | รหัสผู้รับบริการ |
+| full_name | string | | ชื่อ-นามสกุล |
+| nickname | string | | ชื่อเล่น |
+| id_card_number | string | | เลขบัตรประชาชน |
+| birth_date | date | | วันเกิด |
+| nationality | string | | สัญชาติ |
+| birth_gender | string | | เพศโดยกำเนิด |
+| phone_number | string | | เบอร์โทรศัพท์ |
+| line_id | string | | Line ID |
+| address | string | | ที่อยู่ |
+| education_level | string | | ระดับการศึกษา |
+| occupation | string | | อาชีพ |
+| income_range | string | | รายได้เฉลี่ย |
+| health_insurance | string | | สิทธิการรักษา |
+| target_group | string | | กลุ่มเป้าหมาย |
+| created_at | datetime | | สร้างเมื่อ |
+| updated_at | datetime | | แก้ไขเมื่อ |
 
-    SERVICE_SESSION {
-        int session_id PK "รหัสรอบการบริการ"
-        string client_id FK "รหัสผู้รับบริการ"
-        string staff_id FK "เจ้าหน้าที่ผู้ให้บริการ"
-        string created_by FK "เจ้าหน้าที่ผู้บันทึกข้อมูล"
-        date service_date "วันที่รับบริการ"
-        string access_channel "ช่องทางการเข้าถึง"
-        string service_province "จังหวัดที่ให้บริการ"
-        string service_district "อำเภอที่ให้บริการ"
-        boolean is_mobile_clinic "ออกหน่วยเคลื่อนที่"
-        string partner_agency "หน่วยงานร่วม"
-        string funding_source "แหล่งงบประมาณ"
-        datetime created_at "สร้างเมื่อ"
-        datetime updated_at "แก้ไขเมื่อ"
-    }
+#### 2) ตาราง STAFF (เจ้าหน้าที่/ผู้ใช้งาน)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| staff_id | string | PK | รหัสเจ้าหน้าที่ |
+| username | string | | ชื่อผู้ใช้ |
+| password_hash | string | | รหัสผ่านที่เข้ารหัส |
+| staff_name | string | | ชื่อ-นามสกุลเจ้าหน้าที่ |
+| role | string | | บทบาท (Admin, Supervisor, Staff, Volunteer) |
+| email | string | | อีเมล |
+| phone_number | string | | เบอร์โทรศัพท์ |
+| is_active | boolean | | สถานะการใช้งาน |
+| last_login | datetime | | เข้าสู่ระบบล่าสุด |
+| created_at | datetime | | สร้างเมื่อ |
 
-    BEHAVIORAL_ASSESSMENT {
-        int session_id PK, FK "รหัสรอบการบริการ"
-        string partner_type_3m "ประเภทคู่นอน (3 เดือน)"
-        string last_sex_method "วิธีมีเพศสัมพันธ์ล่าสุด"
-        string condom_use_freq "ความถี่การใช้ถุงยาง"
-        boolean chemsex_history "ประวัติ Chemsex"
-        boolean needle_sharing "การใช้เข็มร่วมกัน"
-        string last_hiv_test_result "ผลตรวจ HIV ล่าสุด"
-        string art_status "สถานะการรับยา ART"
-        string disclosure_status "สถานะการเปิดเผยผล"
-    }
+#### 3) ตาราง SERVICE_SESSION (รอบการรับบริการ)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| session_id | int | PK | รหัสรอบการบริการ |
+| client_id | string | FK | รหัสผู้รับบริการ |
+| staff_id | string | FK | เจ้าหน้าที่ผู้ให้บริการ |
+| created_by | string | FK | เจ้าหน้าที่ผู้บันทึกข้อมูล |
+| service_date | date | | วันที่รับบริการ |
+| access_channel | string | | ช่องทางการเข้าถึง |
+| service_province | string | | จังหวัดที่ให้บริการ |
+| service_district | string | | อำเภอที่ให้บริการ |
+| is_mobile_clinic | boolean | | ออกหน่วยเคลื่อนที่ |
+| partner_agency | string | | หน่วยงานร่วม |
+| funding_source | string | | แหล่งงบประมาณ |
+| created_at | datetime | | สร้างเมื่อ |
+| updated_at | datetime | | แก้ไขเมื่อ |
 
-    SERVICE_DELIVERY {
-        int session_id PK, FK "รหัสรอบการบริการ"
-        boolean edu_hiv_stis "ความรู้ HIV/STIs"
-        boolean edu_prep_pep "ความรู้ PrEP/PEP"
-        int condom_49mm_qty "ถุงยาง 49มม. (ชิ้น)"
-        int condom_52mm_qty "ถุงยาง 52มม. (ชิ้น)"
-        int lubricant_qty "สารหล่อลื่น (ซอง)"
-        int syringe_qty "เข็มฉีดยา (ชิ้น)"
-    }
+#### 4) ตาราง BEHAVIORAL_ASSESSMENT (การประเมินพฤติกรรมเสี่ยง)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| session_id | int | PK, FK | รหัสรอบการบริการ |
+| partner_type_3m | string | | ประเภทคู่นอน (3 เดือน) |
+| last_sex_method | string | | วิธีมีเพศสัมพันธ์ล่าสุด |
+| condom_use_freq | string | | ความถี่การใช้ถุงยาง |
+| chemsex_history | boolean | | ประวัติ Chemsex |
+| needle_sharing | boolean | | การใช้เข็มร่วมกัน |
+| last_hiv_test_result | string | | ผลตรวจ HIV ล่าสุด |
+| art_status | string | | สถานะการรับยา ART |
+| disclosure_status | string | | สถานะการเปิดเผยผล |
 
-    REFERRAL_RECORD {
-        int referral_id PK "รหัสการส่งต่อ"
-        int session_id FK "รหัสรอบการบริการ"
-        string referral_type "ประเภทการส่งตรวจ"
-        string destination_hospital "โรงพยาบาลที่ส่งไป"
-        date test_date "วันที่ตรวจ"
-        string test_result "ผลการตรวจ"
-    }
+#### 5) ตาราง SERVICE_DELIVERY (บันทึกการจ่ายเวชภัณฑ์)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| session_id | int | PK, FK | รหัสรอบการบริการ |
+| edu_hiv_stis | boolean | | ความรู้ HIV/STIs |
+| edu_prep_pep | boolean | | ความรู้ PrEP/PEP |
+| condom_49mm_qty | int | | ถุงยาง 49มม. (ชิ้น) |
+| condom_52mm_qty | int | | ถุงยาง 52มม. (ชิ้น) |
+| lubricant_qty | int | | สารหล่อลื่น (ซอง) |
+| syringe_qty | int | | เข็มฉีดยา (ชิ้น) |
 
-    HIVST_RECORD {
-        int session_id PK, FK "รหัสรอบการบริการ"
-        date test_date "วันที่ตรวจ"
-        string distribution_channel "ช่องทางการรับชุดตรวจ"
-        string result "ผลการตรวจเบื้องต้น"
-        string confirmed_test_link "ลิงก์ยืนยันผล"
-    }
-\`\`\`
+#### 6) ตาราง REFERRAL_RECORD (บันทึกการส่งต่อ)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| referral_id | int | PK | รหัสการส่งต่อ |
+| session_id | int | FK | รหัสรอบการบริการ |
+| referral_type | string | | ประเภทการส่งตรวจ |
+| destination_hospital | string | | โรงพยาบาลที่ส่งไป |
+| test_date | date | | วันที่ตรวจ |
+| test_result | string | | ผลการตรวจ |
+
+#### 7) ตาราง HIVST_RECORD (บันทึกชุดตรวจด้วยตนเอง)
+| ชื่อฟิลด์ | ประเภทข้อมูล | Key | คำอธิบาย |
+| :--- | :--- | :---: | :--- |
+| session_id | int | PK, FK | รหัสรอบการบริการ |
+| test_date | date | | วันที่ตรวจ |
+| distribution_channel | string | | ช่องทางการรับชุดตรวจ |
+| result | string | | ผลการตรวจเบื้องต้น |
+| confirmed_test_link | string | | ลิงก์ยืนยันผล |
 
 ---
 
